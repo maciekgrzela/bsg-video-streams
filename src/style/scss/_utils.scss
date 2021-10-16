@@ -1,0 +1,73 @@
+$spacers: 1, 2, 3, 4, 5;
+$font-weights: 100, 200, 300, 400, 500, 600, 700, 800;
+$directions: 'bottom', 'left', 'right', 'top';
+
+@mixin box-shadow-small {
+  box-shadow: 0 0.125rem 0.25rem $small-shadow-color;
+}
+
+@mixin box-shadow-medium {
+  box-shadow: 0 0.5rem 1rem $medium-shadow-color;
+}
+
+@mixin box-shadow-large {
+  box-shadow: 0 1rem 3rem $large-shadow-color;
+}
+
+@each $space in $spacers {
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+  .mt-#{$space} {
+    margin-top: #{$space}rem;
+  }
+  .ml-#{$space} {
+    margin-left: #{$space}rem;
+  }
+  .mr-#{$space} {
+    margin-right: #{$space}rem;
+  }
+  .mb-#{$space} {
+    margin-bottom: #{$space}rem;
+  }
+  .mx-#{$space} {
+    margin: #{$space}rem unset;
+  }
+  .my-#{$space} {
+    margin: unset #{$space}rem;
+  }
+
+  .p-#{$space} {
+    padding: #{$space}rem;
+  }
+  .pt-#{$space} {
+    padding-top: #{$space}rem;
+  }
+  .pl-#{$space} {
+    padding-left: #{$space}rem;
+  }
+  .pr-#{$space} {
+    padding-right: #{$space}rem;
+  }
+  .pb-#{$space} {
+    padding-bottom: #{$space}rem;
+  }
+  .px-#{$space} {
+    padding: #{$space}rem unset;
+  }
+  .py-#{$space} {
+    padding: unset #{$space}rem;
+  }
+}
+
+@each $weight in $font-weights {
+  .text-weight-#{$weight} {
+    font-weight: #{$weight};
+  }
+}
+
+@each $direction in $directions {
+  .border-#{$direction} {
+    border-#{$direction}: 1px solid $gray-300;
+  }
+}

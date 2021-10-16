@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: $body-bg;
+  color: $body-color;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 2.3rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
+}
+
+h3 {
+  font-size: 1.75rem;
+  @media (max-width: 768px) {
+    font-size: 1.55rem;
+  }
+}
+
+h4 {
+  font-size: 1.5rem;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+}
+
+h5 {
+  font-size: 1.25rem;
+  @media (max-width: 768px) {
+    font-size: 1.05rem;
+  }
+}
+
+h6 {
+  font-size: 1rem;
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+button {
+  border: none;
+  padding: 5px 3px;
+  border-radius: 7px;
+}
+
+button:hover {
+  box-shadow: inset 0 0 0 10em $button-hover-color;
+}
+
+button.darken:hover {
+  box-shadow: inset 0em 0em 0em 10em $button-darken-hover-color;
+}
+
+.text-muted {
+  color: $gray-700;
+}
+
+.text-italic {
+  font-style: italic;
+}

@@ -1,19 +1,29 @@
-import { LoginUserResponse } from '../../api/endpoints/auth/responses/loginUserResponse';
 import { RequestStatusType } from '../../types/requestStatusType';
 
 export interface AuthState {
   status: {
-    loginAnonymousUser: RequestStatusType;
-    loginRegularUser: RequestStatusType;
+    loginUser: RequestStatusType;
   };
-  user: LoginUserResponse | null;
-  token: string | null;
+  user: UserState | null;
+  token: TokenInfo | null;
+}
+
+interface UserState {
+  Id: number;
+  UserName: string;
+  FullName: string;
+  ClientRoles: [];
+  IsAnonymous: boolean;
+}
+
+interface TokenInfo {
+  Token: string;
+  TokenExpires: Date;
 }
 
 export const authInitState: AuthState = {
   status: {
-    loginAnonymousUser: RequestStatusType.INITIAL,
-    loginRegularUser: RequestStatusType.INITIAL,
+    loginUser: RequestStatusType.INITIAL,
   },
   user: null,
   token: null,

@@ -3,14 +3,18 @@ import { RequestStatusType } from '../../types/requestStatusType';
 
 export interface MediaListState {
   status: {
-    getMediaList: RequestStatusType;
+    getFavoriteMediaList: RequestStatusType;
+    getOtherMediaLists: RequestStatusType;
   };
   mediaLists: GetMediaListResponse[];
+  mediaFavoriteList: GetMediaListResponse | null;
 }
 
 export const mediaListInitState: MediaListState = {
   status: {
-    getMediaList: RequestStatusType.INITIAL,
+    getFavoriteMediaList: RequestStatusType.INITIAL,
+    getOtherMediaLists: RequestStatusType.INITIAL,
   },
   mediaLists: [],
+  mediaFavoriteList: null,
 };

@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { GenericResponse } from '../types/genericResponse';
 import { authEndpoints } from './endpoints/auth/authEndpoints';
 import { mediaListEndpoints } from './endpoints/medialist/mediaListEndpoints';
 import { mediaPlayInfoEndpoints } from './endpoints/mediaplayinfo/mediaPlayInfoEndpoints';
@@ -8,7 +9,7 @@ axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
   (config) => {
-    const token = window.localStorage.getItem('jwt');
+    const token = sessionStorage.getItem('jwt');
     if (token) config.headers!.Authorization = `Bearer ${token}`;
     return config;
   },
@@ -18,7 +19,12 @@ axios.interceptors.request.use(
 );
 
 const handleResponse = (response: AxiosResponse) => {
-  return response.data as any;
+  const responseObject: GenericResponse<any> = {
+    data: response.data,
+    status: response.status,
+  };
+
+  return responseObject;
 };
 
 export const requests = {

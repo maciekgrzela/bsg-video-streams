@@ -14,6 +14,10 @@ $directions: 'bottom', 'left', 'right', 'top';
   box-shadow: 0 1rem 3rem $large-shadow-color;
 }
 
+@mixin box-shadow-play-button {
+  box-shadow: 1rem 1rem 3rem $play-button-shadow-color;
+}
+
 @each $space in $spacers {
   .m-#{$space} {
     margin: #{$space}rem;

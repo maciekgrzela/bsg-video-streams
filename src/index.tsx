@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './state/store';
 import Moment from 'react-moment';
+import './style/css/main.css';
+import { IconContext } from 'react-icons';
 
 const moment = require('moment/min/moment-with-locales');
 
@@ -15,7 +17,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <IconContext.Provider value={{ className: 'icon' }}>
+          <App />
+        </IconContext.Provider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

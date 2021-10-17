@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LoginUserResponseWithAnonymousProp } from '../../api/endpoints/auth/responses/loginUserResponse';
 import { GenericResponse } from '../../types/genericResponse';
+import { RequestError } from '../../types/requestError';
 import { RequestStatusType } from '../../types/requestStatusType';
 import { authInitState, AuthState } from './auth.state';
 
@@ -29,8 +30,10 @@ const authSlice = createSlice({
         action.payload.data.AuthorizationToken.Token
       );
       state.status.loginUser = RequestStatusType.SUCCESS;
+      state.userError = null;
     },
-    loginFailed: (state: AuthState) => {
+    loginFailed: (state: AuthState, action: PayloadAction<RequestError>) => {
+      state.userError = action.payload;
       state.status.loginUser = RequestStatusType.FAILURE;
     },
     logoutStart: (state: AuthState) => {
@@ -41,6 +44,7 @@ const authSlice = createSlice({
       state.token = null;
       window.sessionStorage.removeItem('jwt');
       state.status.logoutUser = RequestStatusType.SUCCESS;
+      state.userError = null;
     },
     logoutFailed: (state: AuthState) => {
       state.status.logoutUser = RequestStatusType.FAILURE;

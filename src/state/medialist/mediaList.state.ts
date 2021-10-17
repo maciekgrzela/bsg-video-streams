@@ -2,6 +2,7 @@ import {
   GetMediaListResponse,
   MediaListEntity,
 } from '../../api/endpoints/medialist/responses/getMediaListResponse';
+import { RequestError } from '../../types/requestError';
 import { RequestStatusType } from '../../types/requestStatusType';
 
 export interface MediaListState {
@@ -10,8 +11,10 @@ export interface MediaListState {
     getOtherMediaLists: RequestStatusType;
   };
   mediaLists: GetMediaListResponse[];
+  mediaListsError: RequestError | null;
   mediaFavoriteList: GetMediaListResponse | null;
   mediaFavoriteItem: MediaListEntity | null;
+  mediaFavoriteListError: RequestError | null;
 }
 
 export const mediaListInitState: MediaListState = {
@@ -20,6 +23,8 @@ export const mediaListInitState: MediaListState = {
     getOtherMediaLists: RequestStatusType.INITIAL,
   },
   mediaLists: [],
+  mediaListsError: null,
   mediaFavoriteList: null,
   mediaFavoriteItem: null,
+  mediaFavoriteListError: null,
 };

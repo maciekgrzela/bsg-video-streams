@@ -14,6 +14,7 @@ import { GenericResponse } from '../../types/genericResponse';
 import { LoginUserResponseWithAnonymousProp } from '../../api/endpoints/auth/responses/loginUserResponse';
 import { loginRegularUserRequest } from '../../api/endpoints/auth/requests/loginRegularUserRequest';
 import { history } from '../..';
+import { prepareRequestError } from '../../helpers/prepareRequestError';
 
 export const loginAnonymousUser =
   (): AppThunk => async (dispatch, getState) => {
@@ -34,7 +35,8 @@ export const loginAnonymousUser =
         dispatch(loginSuccess(payload));
       }
     } catch (e) {
-      dispatch(loginFailed());
+      const requestError = prepareRequestError(e);
+      dispatch(loginFailed(requestError));
     }
   };
 
@@ -61,7 +63,8 @@ export const loginRegularUser =
         history.push('/');
       }
     } catch (e) {
-      dispatch(loginFailed());
+      const requestError = prepareRequestError(e);
+      dispatch(loginFailed(requestError));
     }
   };
 

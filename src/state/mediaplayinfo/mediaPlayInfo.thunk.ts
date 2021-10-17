@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { getMediaPlayInfoRequest } from '../../api/endpoints/mediaplayinfo/requests/getMediaPlayInfoRequest';
 import { endpoints } from '../../api/httpClient';
+import { prepareRequestError } from '../../helpers/prepareRequestError';
 import { RequestError } from '../../types/requestError';
 import { AppThunk } from '../store';
 import {
@@ -26,26 +27,8 @@ export const getMediaPlayInfo =
         dispatch(getMediaPlayInfoSuccess(mediaPlayInfo.data));
       }
     } catch (error: any) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          const requestError: RequestError = {
-            code: error.response.status,
-            message: (error.response.data as any).Message as string,
-          };
-          dispatch(getMediaPlayInfoFailed(requestError));
-        } else if (error.request) {
-          const requestError: RequestError = {
-            code: 401,
-            message: 'Wystąpił błąd podczas generowania żadania',
-          };
-          dispatch(getMediaPlayInfoFailed(requestError));
-        }
-      } else {
-        const requestError: RequestError = {
-          message: error.message,
-        };
-        dispatch(getMediaPlayInfoFailed(requestError));
-      }
+      const requestError = prepareRequestError(error);
+      dispatch(getMediaPlayInfoFailed(requestError));
     }
   };
 

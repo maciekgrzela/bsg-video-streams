@@ -28,6 +28,16 @@
   &__header {
     margin-bottom: 50px;
   }
+
+  &__error {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px 0;
+    border-radius: 15px;
+    text-align: center;
+    background-color: $danger;
+    color: $white;
+  }
 }
 
 .login-form {

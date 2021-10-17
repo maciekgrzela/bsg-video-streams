@@ -528,6 +528,10 @@ p {
   background-color: #6c757d;
 }
 
+.media-badge--series {
+  background-color: #0d6efd;
+}
+
 .header {
   width: 100%;
   height: 80px;
@@ -542,11 +546,6 @@ p {
 .header--inverted {
   border-bottom: 1px solid #343a40;
   background-color: black;
-}
-
-.header__logo {
-  -ms-flex-preferred-size: 320px;
-      flex-basis: 320px;
 }
 
 .header__nav {
@@ -569,6 +568,12 @@ p {
   font-size: 1.6rem;
   font-weight: 200;
   padding-top: 3px;
+}
+
+@media (max-width: 768px) {
+  .header__now-playing {
+    display: none;
+  }
 }
 
 .header__go-back {
@@ -606,6 +611,12 @@ p {
   font-size: 1.8rem;
 }
 
+@media (max-width: 768px) {
+  .logo__text {
+    font-size: 1.3rem;
+  }
+}
+
 .nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -618,11 +629,91 @@ p {
           justify-content: flex-end;
 }
 
+.nav--toggled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3000;
+  background-color: black;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.nav--toggled .nav__categories {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.nav--toggled .nav__toggle-menu {
+  display: none;
+}
+
+.nav--toggled .nav__hide-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 25px;
+  right: 35px;
+}
+
+.nav--toggled .nav__account-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .nav__categories {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   list-style-type: none;
+}
+
+@media (max-width: 768px) {
+  .nav__categories {
+    display: none;
+  }
+}
+
+.nav__toggle-menu, .nav__hide-menu {
+  cursor: pointer;
+}
+
+.nav__toggle-menu .icon, .nav__hide-menu .icon {
+  font-size: 2rem;
+}
+
+.nav__toggle-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav__toggle-menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.nav__hide-menu {
+  display: none;
 }
 
 .nav__category {
@@ -645,6 +736,12 @@ p {
   padding: 10px 30px;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .nav__account-button {
+    display: none;
+  }
 }
 
 .footer {
@@ -741,12 +838,27 @@ p {
           transform: translateY(-50%);
 }
 
+@media (max-width: 768px) {
+  .welcome__favorite-media-content {
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+}
+
 .welcome__favorite-media-play-button {
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  .welcome__favorite-media-play-button {
+    -webkit-filter: opacity(0.3);
+            filter: opacity(0.3);
+  }
 }
 
 .welcome__favorite-media-image {
@@ -931,6 +1043,37 @@ p {
   font-size: 2rem;
 }
 
+.media-lists-error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 1.5rem;
+}
+
+.media-lists-error .icon {
+  font-size: 4rem;
+}
+
+.media-lists-error__text {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 450px;
+}
+
+.media-lists-error__reload {
+  padding: 10px 15px;
+  font-size: 1.2rem;
+}
+
 .login-page {
   width: 100%;
   min-height: 100vh;
@@ -967,6 +1110,16 @@ p {
 
 .login-page__header {
   margin-bottom: 50px;
+}
+
+.login-page__error {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 15px 0;
+  border-radius: 15px;
+  text-align: center;
+  background-color: #dc3545;
+  color: white;
 }
 
 .login-form input {

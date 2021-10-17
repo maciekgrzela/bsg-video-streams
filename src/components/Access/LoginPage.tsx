@@ -1,8 +1,9 @@
 import React from 'react';
 import { Field, Form as FinalForm } from 'react-final-form';
 import { ValidationErrors } from 'final-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginRegularUser } from '../../state/auth/auth.thunk';
+import { RootState } from '../../state/root.reducer';
 
 const loginValidator = (values: any): ValidationErrors => {
   const errors: any = {};
@@ -31,6 +32,7 @@ interface FormValues {
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const userError = useSelector((state: RootState) => state.auth.userError);
 
   const handleLogin = (data: FormValues) => {
     dispatch(loginRegularUser(data.userName, data.password));
@@ -82,6 +84,9 @@ const LoginPage = () => {
             </form>
           )}
         />
+        {userError && (
+          <div className='login-page__error'>{userError.message}</div>
+        )}
       </div>
     </div>
   );

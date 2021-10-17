@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GetMediaListResponse } from '../../api/endpoints/medialist/responses/getMediaListResponse';
 import { GenericResponse } from '../../types/genericResponse';
+import { RequestError } from '../../types/requestError';
 import { RequestStatusType } from '../../types/requestStatusType';
 import { mediaListInitState, MediaListState } from './mediaList.state';
 
@@ -35,8 +36,13 @@ const mediaListSlice = createSlice({
         ),
       };
       state.status.getFavoriteMediaList = RequestStatusType.SUCCESS;
+      state.mediaFavoriteListError = null;
     },
-    getFavoriteMediaListFailed: (state: MediaListState) => {
+    getFavoriteMediaListFailed: (
+      state: MediaListState,
+      action: PayloadAction<RequestError>
+    ) => {
+      state.mediaFavoriteListError = action.payload;
       state.status.getFavoriteMediaList = RequestStatusType.FAILURE;
     },
 
@@ -49,8 +55,13 @@ const mediaListSlice = createSlice({
     ) => {
       state.mediaLists = action.payload;
       state.status.getOtherMediaLists = RequestStatusType.SUCCESS;
+      state.mediaListsError = null;
     },
-    getOtherMediaListsFailed: (state: MediaListState) => {
+    getOtherMediaListsFailed: (
+      state: MediaListState,
+      action: PayloadAction<RequestError>
+    ) => {
+      state.mediaListsError = action.payload;
       state.status.getOtherMediaLists = RequestStatusType.FAILURE;
     },
   },

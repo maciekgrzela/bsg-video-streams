@@ -1,4 +1,7 @@
-import { GetMediaListResponse } from '../../api/endpoints/medialist/responses/getMediaListResponse';
+import {
+  GetMediaListResponse,
+  MediaListEntity,
+} from '../../api/endpoints/medialist/responses/getMediaListResponse';
 import { RequestStatusType } from '../../types/requestStatusType';
 
 export interface MediaListState {
@@ -8,6 +11,7 @@ export interface MediaListState {
   };
   mediaLists: GetMediaListResponse[];
   mediaFavoriteList: GetMediaListResponse | null;
+  mediaFavoriteItem: MediaListEntity | null;
 }
 
 export const mediaListInitState: MediaListState = {
@@ -17,4 +21,5 @@ export const mediaListInitState: MediaListState = {
   },
   mediaLists: [],
   mediaFavoriteList: null,
+  mediaFavoriteItem: null,
 };

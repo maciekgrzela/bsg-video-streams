@@ -5,11 +5,6 @@
   padding: 0 30px;
   position: fixed;
   z-index: 1000;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
 
   &--inverted {
     border-bottom: 1px solid $gray-800;
@@ -22,6 +17,29 @@
 
   &__nav {
     flex-grow: 1;
+  }
+
+  &__now-playing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    font-size: 1.6rem;
+    font-weight: 200;
+    padding-top: 3px;
+  }
+
+  &__go-back {
+    background-color: transparent;
+    color: $white;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    & .icon {
+      font-size: 2rem;
+    }
   }
 }
 

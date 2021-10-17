@@ -14,7 +14,7 @@ import {
 export const getFavoriteMediaList =
   (): AppThunk => async (dispatch, getState) => {
     const mediaListRequest: getMediaListRequest = {
-      mediaListId: 2,
+      mediaListId: 3,
       pageNumber: 1,
       pageSize: 15,
       includeCategories: true,
@@ -30,7 +30,6 @@ export const getFavoriteMediaList =
         dispatch(getFavoriteMediaListSuccess(favoriteMediaList));
       }
     } catch (e) {
-      console.log(e);
       dispatch(getFavoriteMediaListFailed());
     }
   };
@@ -41,7 +40,7 @@ export const getOtherMediaLists =
     const mediaListsToFetch: GetMediaListResponse[] = [];
 
     const mediaListRequest: getMediaListRequest = {
-      mediaListId: 3,
+      mediaListId: 4,
       pageNumber: 1,
       pageSize: 15,
       includeCategories: true,
@@ -53,7 +52,7 @@ export const getOtherMediaLists =
       const mediaList = await endpoints.mediaList.getMediaList(
         mediaListRequest
       );
-      mediaListRequest.mediaListId++;
+      mediaListRequest.mediaListId = 6;
       const mediaList2 = await endpoints.mediaList.getMediaList(
         mediaListRequest
       );

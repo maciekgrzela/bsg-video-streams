@@ -1,31 +1,38 @@
 export interface GetMediaListResponse {
-  cacheDataValidTo: Date;
-  sourceType: string;
-  entities: mediaListEntity[];
+  CacheDataValidTo: Date;
+  SourceType: string;
+  Entities: MediaListEntity[];
 }
 
-interface mediaListEntity {
-  id: string;
-  guid: string;
-  mediaTypeCode: string;
-  mediaTypeDisplayName: string;
-  mediaAgeRestrictionValueMin: number;
-  mediaAgeRestrictionImageUrl: string;
-  title: string;
-  description: string;
-  year: number;
-  duration: number;
-  isTrialContentAvailable: boolean;
-  availableFrom: Date;
-  images: mediaListEntityImage[];
+export interface MediaListEntity {
+  Id: number;
+  Guid: string;
+  MediaTypeCode: string;
+  MediaTypeDisplayName: string;
+  MediaAgeRestrictionValueMin: number;
+  MediaAgeRestrictionImageUrl: string;
+  Title: string;
+  Description: string;
+  Year: number;
+  Duration: number;
+  IsTrialContentAvailable: boolean;
+  AvailableFrom: Date;
+  Images: MediaListEntityImage[];
+  Categories: MediaListEntityCategory[];
 }
 
-interface mediaListEntityImage {
-  id: number;
-  mediaId: number;
-  platformCode: string;
-  imageTypeCode: string;
-  url: string;
-  width: number;
-  height: number;
+export interface MediaListEntityImage {
+  Id: number;
+  MediaId: number;
+  PlatformCode: string;
+  ImageTypeCode: string;
+  Url: string;
+  Width: number;
+  Height: number;
+}
+
+export interface MediaListEntityCategory {
+  CategoryId: number;
+  CategoryCode: string;
+  CategoryName: string;
 }

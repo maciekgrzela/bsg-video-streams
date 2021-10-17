@@ -33,9 +33,28 @@ const authSlice = createSlice({
     loginFailed: (state: AuthState) => {
       state.status.loginUser = RequestStatusType.FAILURE;
     },
+    logoutStart: (state: AuthState) => {
+      state.status.logoutUser = RequestStatusType.PENDING;
+    },
+    logoutSuccess: (state: AuthState) => {
+      state.user = null;
+      state.token = null;
+      window.sessionStorage.removeItem('jwt');
+      state.status.logoutUser = RequestStatusType.SUCCESS;
+    },
+    logoutFailed: (state: AuthState) => {
+      state.status.logoutUser = RequestStatusType.FAILURE;
+    },
   },
 });
 
 export default authSlice;
 
-export const { loginStart, loginSuccess, loginFailed } = authSlice.actions;
+export const {
+  loginStart,
+  loginSuccess,
+  loginFailed,
+  logoutStart,
+  logoutSuccess,
+  logoutFailed,
+} = authSlice.actions;

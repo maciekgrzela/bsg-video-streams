@@ -4,6 +4,7 @@ export interface LoginUserResponse {
     UserName: string;
     FullName: string;
     ClientRoles: [];
+    Email: string;
   };
   AuthorizationToken: {
     Token: string;

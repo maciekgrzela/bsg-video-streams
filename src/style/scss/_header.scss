@@ -11,10 +11,6 @@
     background-color: $black;
   }
 
-  &__logo {
-    flex-basis: 320px;
-  }
-
   &__nav {
     flex-grow: 1;
   }
@@ -27,6 +23,10 @@
     font-size: 1.6rem;
     font-weight: 200;
     padding-top: 3px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   &__go-back {
@@ -55,6 +55,10 @@
 
   &__text {
     font-size: 1.8rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.3rem;
+    }
   }
 }
 
@@ -62,10 +66,69 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  $this: &;
+
+  &--toggled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3000;
+    background-color: $black;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    #{$this}__categories {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #{$this}__toggle-menu {
+      display: none;
+    }
+
+    #{$this}__hide-menu {
+      display: flex;
+      position: absolute;
+      top: 25px;
+      right: 35px;
+    }
+
+    #{$this}__account-button {
+      display: flex;
+    }
+  }
 
   &__categories {
     display: flex;
     list-style-type: none;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__toggle-menu,
+  &__hide-menu {
+    cursor: pointer;
+    & .icon {
+      font-size: 2rem;
+    }
+  }
+
+  &__toggle-menu {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &__hide-menu {
+    display: none;
   }
 
   &__category {
@@ -84,6 +147,10 @@
       padding: 10px 30px;
       font-weight: 600;
       text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      display: none;
     }
   }
 }

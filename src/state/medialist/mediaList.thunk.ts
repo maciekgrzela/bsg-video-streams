@@ -1,6 +1,7 @@
 import { getMediaListRequest } from '../../api/endpoints/medialist/requests/getMediaListRequest';
 import { GetMediaListResponse } from '../../api/endpoints/medialist/responses/getMediaListResponse';
 import { endpoints } from '../../api/httpClient';
+import { prepareRequestError } from '../../helpers/prepareRequestError';
 import { AppThunk } from '../store';
 import {
   getFavoriteMediaListFailed,
@@ -29,8 +30,9 @@ export const getFavoriteMediaList =
       if (favoriteMediaList.status === 200) {
         dispatch(getFavoriteMediaListSuccess(favoriteMediaList));
       }
-    } catch (e) {
-      dispatch(getFavoriteMediaListFailed());
+    } catch (e: any) {
+      const requestError = prepareRequestError(e);
+      dispatch(getFavoriteMediaListFailed(requestError));
     }
   };
 
@@ -52,21 +54,19 @@ export const getOtherMediaLists =
       const mediaList = await endpoints.mediaList.getMediaList(
         mediaListRequest
       );
+
       mediaListRequest.mediaListId = 6;
+
       const mediaList2 = await endpoints.mediaList.getMediaList(
         mediaListRequest
       );
-
-      if (mediaList.status !== 200 || mediaList2.status !== 200) {
-        dispatch(getOtherMediaListsFailed());
-        return;
-      }
 
       mediaListsToFetch.push(mediaList.data);
       mediaListsToFetch.push(mediaList2.data);
 
       dispatch(getOtherMediaListsSuccess(mediaListsToFetch));
-    } catch (e) {
-      dispatch(getOtherMediaListsFailed());
+    } catch (e: any) {
+      const requestError = prepareRequestError(e);
+      dispatch(getOtherMediaListsFailed(requestError));
     }
   };

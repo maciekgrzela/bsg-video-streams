@@ -7,18 +7,23 @@ const HomePageRemainingPositions = () => {
   const mediaFavoriteList = useSelector(
     (state: RootState) => state.mediaList.mediaFavoriteList
   );
+  const mediaFavoriteListError = useSelector(
+    (state: RootState) => state.mediaList.mediaFavoriteListError
+  );
 
   return (
     <>
-      {mediaFavoriteList !== null && mediaFavoriteList.Entities.length > 0 && (
-        <div className='welcome__remaining-positions remaining-positions'>
-          <ul className='remaining-positions__list'>
-            {mediaFavoriteList.Entities.map((entity, idx) => (
-              <HomePageRemainingPosition key={idx} entity={entity} />
-            ))}
-          </ul>
-        </div>
-      )}
+      {mediaFavoriteList !== null &&
+        mediaFavoriteListError === null &&
+        mediaFavoriteList.Entities.length > 0 && (
+          <div className='welcome__remaining-positions remaining-positions'>
+            <ul className='remaining-positions__list'>
+              {mediaFavoriteList.Entities.map((entity, idx) => (
+                <HomePageRemainingPosition key={idx} entity={entity} />
+              ))}
+            </ul>
+          </div>
+        )}
     </>
   );
 };

@@ -6,10 +6,12 @@ import { RootState } from '../../state/root.reducer';
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import { useLocation } from 'react-router';
-import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowBack, IoMdClose } from 'react-icons/io';
+import { BiMenuAltRight } from 'react-icons/bi';
 
 const Header = () => {
   const [inverted, setInverted] = useState(false);
+  const [toggled, setToggled] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
   const otherMediaLists = useSelector(
     (state: RootState) => state.mediaList.mediaLists
@@ -47,7 +49,15 @@ const Header = () => {
       {mediaPlayInfoTitle !== undefined && (
         <span className='header__now-playing'>{`Teraz odtwarzane: ${mediaPlayInfoTitle}`}</span>
       )}
-      <nav className='header__nav nav'>
+      <nav
+        className={toggled ? 'header__nav nav nav--toggled' : 'header__nav nav'}
+      >
+        <span className='nav__toggle-menu' onClick={() => setToggled(true)}>
+          <BiMenuAltRight />
+        </span>
+        <span className='nav__hide-menu' onClick={() => setToggled(false)}>
+          <IoMdClose />
+        </span>
         {otherMediaLists !== null &&
           otherMediaLists.length > 0 &&
           location.pathname === '/' && (

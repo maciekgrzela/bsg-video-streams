@@ -4,6 +4,7 @@ import { RootState } from '../../state/root.reducer';
 import videoPlaceholder from '../../assets/images/video-placeholder.png';
 import PlayButton from '../Common/PlayButton';
 import MediaTypeBadge from '../Common/MediaTypeBadge';
+import { getRelatedPhoto } from '../../helpers/getRelatedPhoto';
 
 const HomePageFavoriteMedia = () => {
   const mediaFavoriteItem = useSelector(
@@ -16,14 +17,8 @@ const HomePageFavoriteMedia = () => {
         <div className='welcome__favorite-media'>
           <img
             className='welcome__favorite-media-image'
-            src={
-              mediaFavoriteItem.Images.length === 0
-                ? videoPlaceholder
-                : mediaFavoriteItem.Images.find(
-                    (p) => p.ImageTypeCode === 'FRAME'
-                  )?.Url || mediaFavoriteItem.Images[0].Url
-            }
-            alt='Favorite Moviess'
+            src={getRelatedPhoto(mediaFavoriteItem)}
+            alt={mediaFavoriteItem.Title}
           />
           <div className='welcome__favorite-media-content'>
             <h1 className='welcome__favorite-media-title'>

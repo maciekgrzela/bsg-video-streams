@@ -1,3 +1,4 @@
+import { RequestError } from '../../types/requestError';
 import { RequestStatusType } from '../../types/requestStatusType';
 
 export interface AuthState {
@@ -6,6 +7,7 @@ export interface AuthState {
     logoutUser: RequestStatusType;
   };
   user: UserState | null;
+  userError: RequestError | null;
   token: TokenInfo | null;
 }
 
@@ -29,5 +31,6 @@ export const authInitState: AuthState = {
     logoutUser: RequestStatusType.INITIAL,
   },
   user: null,
+  userError: null,
   token: null,
 };

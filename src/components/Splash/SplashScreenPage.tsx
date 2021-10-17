@@ -8,9 +8,9 @@ const SplashScreenPage = () => {
         <Loader
           type='MutatingDots'
           color='red'
+          secondaryColor='white'
           height={100}
           width={100}
-          timeout={3000}
         />
       </div>
       <span className='splash-screen__content'>Ładowanie zawartości</span>

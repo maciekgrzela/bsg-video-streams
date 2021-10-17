@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Barlow', sans-serif;
 }
 
 html,
@@ -11,6 +12,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 1rem;
+  font-weight: 400;
 }
 
 h1,
@@ -20,62 +22,65 @@ h4,
 h5,
 h6 {
   margin-top: 0;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
   line-height: 1.2;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
 
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: 2.5rem;
   @media (max-width: 768px) {
     font-size: 2.3rem;
   }
 }
 
-h2 {
-  font-size: 2rem;
-  @media (max-width: 768px) {
-    font-size: 1.8rem;
-  }
-}
-
 h3 {
-  font-size: 1.75rem;
+  font-size: 2.3rem;
   @media (max-width: 768px) {
-    font-size: 1.55rem;
+    font-size: 2.1rem;
   }
 }
 
 h4 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   @media (max-width: 768px) {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
   }
 }
 
 h5 {
-  font-size: 1.25rem;
+  font-size: 1.7rem;
   @media (max-width: 768px) {
-    font-size: 1.05rem;
+    font-size: 1.5rem;
   }
 }
 
 h6 {
-  font-size: 1rem;
+  font-size: 1.3rem;
   @media (max-width: 768px) {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
 
 a {
   text-decoration: none;
   color: unset;
+  cursor: pointer;
 }
 
 button {
   border: none;
   padding: 5px 3px;
-  border-radius: 7px;
+  border-radius: 15px;
+  background-color: $body-color;
+  cursor: pointer;
 }
 
 button:hover {
@@ -86,10 +91,85 @@ button.darken:hover {
   box-shadow: inset 0em 0em 0em 10em $button-darken-hover-color;
 }
 
+p {
+  margin: 0;
+}
+
 .text-muted {
   color: $gray-700;
 }
 
 .text-italic {
   font-style: italic;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.icon {
+  font-size: 1rem;
+}
+
+.play-button {
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include box-shadow-play-button();
+
+  & .icon {
+    margin-left: 5px;
+    font-size: 5rem;
+    color: $gray-400;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 255, 255);
+  border-radius: 30px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(225, 225, 225);
+  border-radius: 30px;
+}
+
+.media-badge {
+  display: inline;
+  padding: 5px;
+  color: $white;
+  border-radius: 2px;
+  margin: 0 5px;
+
+  &--vod {
+    background-color: $success;
+  }
+
+  &--live {
+    background-color: $danger;
+  }
+
+  &--episode {
+    background-color: $secondary;
+  }
 }

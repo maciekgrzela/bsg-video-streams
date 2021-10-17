@@ -1,23 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './state/store';
 import Moment from 'react-moment';
+import './style/css/main.css';
+import { IconContext } from 'react-icons';
+import { createBrowserHistory } from 'history';
 
 const moment = require('moment/min/moment-with-locales');
+
+export const history = createBrowserHistory();
 
 Moment.globalMoment = moment;
 Moment.globalLocale = 'pl';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Router history={history}>
       <Provider store={store}>
-        <App />
+        <IconContext.Provider value={{ className: 'icon' }}>
+          <App />
+        </IconContext.Provider>
       </Provider>
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

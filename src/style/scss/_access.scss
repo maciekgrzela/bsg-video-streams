@@ -1,0 +1,100 @@
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(12, 12, 12, 0.4) 100%
+    ),
+    url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/fall-movies-index-1628968089.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    max-width: 500px;
+    padding: 40px 20px 20px 20px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    margin-bottom: 50px;
+  }
+}
+
+.login-form {
+  & input {
+    background-color: $gray-900;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    color: $white;
+
+    &::placeholder {
+      color: $white;
+    }
+  }
+
+  & button {
+    margin-top: 50px;
+    padding: 10px;
+    font-weight: 500;
+    color: $black;
+
+    &:disabled {
+      background-color: $gray-400;
+      cursor: not-allowed;
+    }
+  }
+
+  &__form-control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    & label {
+      color: $gray-600;
+      margin-bottom: 5px;
+      font-size: 0.8rem;
+      margin-left: 10px;
+    }
+
+    & span {
+      color: $danger;
+      font-size: 0.8rem;
+      margin-top: 5px;
+      margin-left: 10px;
+    }
+  }
+}
+
+.my-account-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__user-info {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: $gray-900;
+  }
+}
+
+.user-info {
+  &__go-home {
+    margin-top: 10px;
+  }
+}

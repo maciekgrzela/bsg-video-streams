@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   clearMediaPlayInfo,
   getMediaPlayInfo,
@@ -9,8 +8,9 @@ import {
 import { RootState } from '../../state/root.reducer';
 import { RequestStatusType } from '../../types/requestStatusType';
 import SplashScreenPage from '../Splash/SplashScreenPage';
-import MediaItemPageContentNotAvailable from './MediaItemPageContentNotAvailable';
+import MediaItemPagePlayer from './MediaItemPagePlayer';
 import MediaItemPageError from './MediaItemPageError';
+import MediaItemPageTitleInfo from './MediaItemPageTitleInfo';
 
 const MediaItemPage = () => {
   const dispatch = useDispatch();
@@ -35,11 +35,7 @@ const MediaItemPage = () => {
     return () => {
       dispatch(clearMediaPlayInfo());
     };
-  }, [id]);
-
-  useEffect(() => {
-    console.log(mediaPlayInfo);
-  }, [mediaPlayInfo]);
+  }, [id, dispatch, user?.IsAnonymous]);
 
   if (mediaPlayInfoStatus === RequestStatusType.PENDING) {
     return <SplashScreenPage />;
@@ -51,55 +47,8 @@ const MediaItemPage = () => {
         <MediaItemPageError error={mediaPlayInfoError!} />
       )}
       <div className='media-item-page'>
-        <div className='media-item-page__player'>
-          {mediaPlayInfo?.ContentUrl !== undefined ? (
-            <ReactPlayer
-              width='100%'
-              height='100%'
-              controls={true}
-              url={mediaPlayInfo?.ContentUrl}
-            />
-          ) : (
-            <MediaItemPageContentNotAvailable />
-          )}
-        </div>
-        <div className='media-item-page__info'>
-          {mediaPlayInfo?.ContentUrl !== undefined && (
-            <table className='media-item-page__table'>
-              <tbody>
-                <tr className='media-item-page__info-row'>
-                  <td>Tytuł:</td>
-                  <td>{mediaPlayInfo?.Title}</td>
-                </tr>
-                <tr className='media-item-page__info-row'>
-                  <td>Typ mediów:</td>
-                  <td>{mediaPlayInfo?.MediaTypeDisplayName}</td>
-                </tr>
-                <tr className='media-item-page__info-row'>
-                  <td>Opis:</td>
-                  <td>{mediaPlayInfo?.Description}</td>
-                </tr>
-                <tr className='media-item-page__info-row'>
-                  <td>Dostęp:</td>
-                  <td>
-                    {user?.IsAnonymous ? 'Dostęp próbny' : 'Pełna wersja'}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          )}
-          {user?.IsAnonymous && (
-            <div className='media-item-page__full-access'>
-              <span>
-                Nie jesteś zalogowany. Aby uzyskać dostęp do pełnych treści{' '}
-                <Link to='/login' className='media-item-page__subscribe'>
-                  zaloguj się
-                </Link>{' '}
-                na swoje konto i wykup subskrybcję
-              </span>
-            </div>
-          )}
-        </div>
+        <MediaItemPagePlayer mediaPlayInfo={mediaPlayInfo} />
+        <MediaItemPageTitleInfo mediaPlayInfo={mediaPlayInfo} user={user} />
       </div>
     </>
   );

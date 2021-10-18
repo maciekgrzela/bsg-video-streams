@@ -11,7 +11,7 @@ export interface AuthState {
   token: TokenInfo | null;
 }
 
-interface UserState {
+export interface UserState {
   Id: number;
   UserName: string;
   FullName: string;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../state/root.reducer';
-import videoPlaceholder from '../../assets/images/video-placeholder.png';
 import PlayButton from '../Common/PlayButton';
 import MediaTypeBadge from '../Common/MediaTypeBadge';
 import { getRelatedPhoto } from '../../helpers/getRelatedPhoto';

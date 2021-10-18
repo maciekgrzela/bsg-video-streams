@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logoutUser } from '../../state/auth/auth.thunk';
 import { RootState } from '../../state/root.reducer';
+import MyAccountPageUserInfoItems from './MyAccountPageUserInfoItems';
 
 const MyAccountPage = () => {
   const dispatch = useDispatch();
@@ -18,22 +19,7 @@ const MyAccountPage = () => {
         <header className='user-info__header'>
           <h1 className='user-info__welcome'>Witaj {user?.FullName}!</h1>
         </header>
-        <ul className='user-info__items'>
-          <li className='user-info__item'>
-            Nazwa użytkownika:{' '}
-            <span className='text-weight-600'>{user?.Email}</span>
-          </li>
-          <li className='user-info__item'>
-            Pełna nazwa:{' '}
-            <span className='text-weight-600'>{user?.FullName}</span>
-          </li>
-          <li className='user-info__item'>
-            Użytkownik anonimowy:{' '}
-            <span className='text-weight-600'>
-              {user?.IsAnonymous ? 'TAK' : 'NIE'}
-            </span>
-          </li>
-        </ul>
+        <MyAccountPageUserInfoItems user={user} />
         <button className='user-info__sign-out' onClick={handleSignOut}>
           Wyloguj
         </button>

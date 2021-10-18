@@ -1,8 +1,6 @@
-import axios, { AxiosError } from 'axios';
 import { getMediaPlayInfoRequest } from '../../api/endpoints/mediaplayinfo/requests/getMediaPlayInfoRequest';
 import { endpoints } from '../../api/httpClient';
 import { prepareRequestError } from '../../helpers/prepareRequestError';
-import { RequestError } from '../../types/requestError';
 import { AppThunk } from '../store';
 import {
   clearMediaPlayInfoSuccess,

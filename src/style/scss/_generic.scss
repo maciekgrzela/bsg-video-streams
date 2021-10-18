@@ -161,6 +161,10 @@ p {
   border-radius: 2px;
   margin: 0 5px;
 
+  @media (max-width: 768px) {
+    padding: 2px;
+  }
+
   &--vod {
     background-color: $success;
   }

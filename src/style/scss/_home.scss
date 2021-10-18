@@ -93,6 +93,10 @@
   align-items: stretch;
   padding: 0 40px;
 
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+
   &__list {
     display: flex;
     flex-wrap: nowrap;
@@ -108,6 +112,11 @@
     height: 112.5px;
     border-radius: 15px;
     margin: 5px 20px 15px 20px;
+
+    @media (max-width: 768px) {
+      min-width: 150px;
+      height: 84.375px;
+    }
 
     @include box-shadow-medium();
 
@@ -146,6 +155,10 @@
     position: absolute;
     bottom: 15px;
     left: 15px;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
   }
 }
 
@@ -186,16 +199,29 @@
   &__desc {
     text-align: justify;
     font-size: 0.9rem;
+    margin-bottom: 10px;
   }
 
   &__playback {
     position: relative;
   }
 
+  &__available {
+    font-weight: 600;
+  }
+
   &__badge {
     position: absolute;
     top: 10px;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & img {
+      margin-top: 5px;
+      width: 30px;
+    }
   }
 
   &__play {

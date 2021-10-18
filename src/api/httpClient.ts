@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { history } from '..';
 import { GenericResponse } from '../types/genericResponse';
 import { authEndpoints } from './endpoints/auth/authEndpoints';
 import { mediaListEndpoints } from './endpoints/medialist/mediaListEndpoints';
@@ -17,6 +18,25 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+const handleErrorResponse = (error: AxiosError) => {
+  const { status } = error.response || {};
+
+  switch (status) {
+    case 404:
+      history.push('/404');
+      break;
+    case 500:
+      history.push('/500');
+      break;
+    default:
+      break;
+  }
+
+  return Promise.reject(error);
+};
+
+axios.interceptors.response.use(undefined, handleErrorResponse);
 
 const handleResponse = (response: AxiosResponse) => {
   const responseObject: GenericResponse<any> = {

@@ -532,6 +532,39 @@ p {
   background-color: #0d6efd;
 }
 
+.error-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
+.error-page__code {
+  font-size: 6rem;
+}
+
+.error-page__text {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.error-page__go-home {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 .header {
   width: 100%;
   height: 80px;

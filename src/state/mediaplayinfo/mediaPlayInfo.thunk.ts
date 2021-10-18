@@ -23,9 +23,7 @@ export const getMediaPlayInfo =
       const mediaPlayInfo = await endpoints.mediaPlayInfo.getMediaPlayInfo(
         mediaPlayInfoRequest
       );
-      if (mediaPlayInfo.status === 200) {
-        dispatch(getMediaPlayInfoSuccess(mediaPlayInfo.data));
-      }
+      dispatch(getMediaPlayInfoSuccess(mediaPlayInfo.data));
     } catch (error: any) {
       const requestError = prepareRequestError(error);
       dispatch(getMediaPlayInfoFailed(requestError));

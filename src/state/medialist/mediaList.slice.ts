@@ -3,6 +3,7 @@ import { GetMediaListResponse } from '../../api/endpoints/medialist/responses/ge
 import { GenericResponse } from '../../types/genericResponse';
 import { RequestError } from '../../types/requestError';
 import { RequestStatusType } from '../../types/requestStatusType';
+import { MediaTypeCode } from '../../types/typeCodes';
 import { mediaListInitState, MediaListState } from './mediaList.state';
 
 const mediaListSlice = createSlice({
@@ -17,7 +18,9 @@ const mediaListSlice = createSlice({
       action: PayloadAction<GenericResponse<GetMediaListResponse>>
     ) => {
       let favoriteItem = action.payload.data.Entities.find(
-        (p) => p.MediaTypeCode === 'VOD' || p.MediaTypeCode === 'LIVE'
+        (p) =>
+          p.MediaTypeCode === MediaTypeCode.VOD ||
+          p.MediaTypeCode === MediaTypeCode.LIVE
       );
 
       if (favoriteItem === undefined) {
@@ -32,7 +35,8 @@ const mediaListSlice = createSlice({
         Entities: action.payload.data.Entities.filter(
           (p) =>
             p.Id !== favoriteItem?.Id &&
-            (p.MediaTypeCode === 'VOD' || p.MediaTypeCode === 'LIVE')
+            (p.MediaTypeCode === MediaTypeCode.VOD ||
+              p.MediaTypeCode === MediaTypeCode.LIVE)
         ),
       };
       state.status.getFavoriteMediaList = RequestStatusType.SUCCESS;

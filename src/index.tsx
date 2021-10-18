@@ -8,8 +8,7 @@ import Moment from 'react-moment';
 import './style/css/main.css';
 import { IconContext } from 'react-icons';
 import { createBrowserHistory } from 'history';
-
-const moment = require('moment/min/moment-with-locales');
+import moment from 'moment';
 
 export const history = createBrowserHistory();
 

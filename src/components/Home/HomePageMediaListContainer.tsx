@@ -1,8 +1,6 @@
 import React from 'react';
 import { MediaListEntity } from '../../api/endpoints/medialist/responses/getMediaListResponse';
-import PlayButton from '../Common/PlayButton';
-import videoPlaceholder from '../../assets/images/video-placeholder.png';
-import MediaTypeBadge from '../Common/MediaTypeBadge';
+import HomePageMediaListItem from './HomePageMediaListItem';
 
 interface HomePageMediaListContainerProps {
   value: number;
@@ -23,38 +21,7 @@ const HomePageMediaListContainer = ({
       </header>
       <ul className='media-element__list'>
         {entities.map((entity, idx) => (
-          <li key={idx} className='media-element__item media-item'>
-            <div className='media-item__playback'>
-              <div className='media-item__badge'>
-                <MediaTypeBadge mediaType={entity.MediaTypeCode} />
-              </div>
-              <img
-                src={
-                  entity.Images.length === 0
-                    ? videoPlaceholder
-                    : entity.Images.find((p) => p.ImageTypeCode === 'FRAME')
-                        ?.Url || entity.Images[0].Url
-                }
-                alt={entity.Title}
-                className='media-item__image'
-              />
-              <PlayButton
-                resource={entity.Id}
-                externalClassName='media-item__play'
-              />
-            </div>
-
-            <div className='media-item__content'>
-              <h3 className='media-item__title'>{entity.Title}</h3>
-              <p className='media-item__desc'>
-                {entity.Description.length > 150 ? (
-                  <>{`${entity.Description.substr(0, 150)}...`}</>
-                ) : (
-                  <>{entity.Description}</>
-                )}
-              </p>
-            </div>
-          </li>
+          <HomePageMediaListItem key={idx} entity={entity} />
         ))}
       </ul>
     </div>

@@ -161,6 +161,10 @@ p {
   border-radius: 2px;
   margin: 0 5px;
 
+  @media (max-width: 768px) {
+    padding: 2px;
+  }
+
   &--vod {
     background-color: $success;
   }
@@ -175,5 +179,29 @@ p {
 
   &--series {
     background-color: $primary;
+  }
+}
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &__code {
+    font-size: 6rem;
+  }
+
+  &__text {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+
+  &__go-home {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 700;
   }
 }

@@ -1,8 +1,6 @@
-import axios, { AxiosError } from 'axios';
 import { getMediaPlayInfoRequest } from '../../api/endpoints/mediaplayinfo/requests/getMediaPlayInfoRequest';
 import { endpoints } from '../../api/httpClient';
 import { prepareRequestError } from '../../helpers/prepareRequestError';
-import { RequestError } from '../../types/requestError';
 import { AppThunk } from '../store';
 import {
   clearMediaPlayInfoSuccess,
@@ -23,9 +21,7 @@ export const getMediaPlayInfo =
       const mediaPlayInfo = await endpoints.mediaPlayInfo.getMediaPlayInfo(
         mediaPlayInfoRequest
       );
-      if (mediaPlayInfo.status === 200) {
-        dispatch(getMediaPlayInfoSuccess(mediaPlayInfo.data));
-      }
+      dispatch(getMediaPlayInfoSuccess(mediaPlayInfo.data));
     } catch (error: any) {
       const requestError = prepareRequestError(error);
       dispatch(getMediaPlayInfoFailed(requestError));

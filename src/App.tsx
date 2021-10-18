@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router';
 import AuthRoute from './AuthRoute';
 import LoginPage from './components/Access/LoginPage';
 import MyAccountPage from './components/Access/MyAccountPage';
+import InternalServerErrorPage from './components/Common/InternalServerErrorPage';
+import NotFoundPage from './components/Common/NotFoundPage';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import HomePage from './components/Home/HomePage';
@@ -69,6 +71,8 @@ const App = () => {
           <Route exact path='/login' component={LoginPage} />
           <AuthRoute exact path='/account' component={MyAccountPage} />
           <AuthRoute path='/media/:id' component={MediaItemPage} />
+          <Route path='/500' component={InternalServerErrorPage} />
+          <Route path='*' component={NotFoundPage} />
         </Switch>
       </main>
       <Footer />
